@@ -1,0 +1,12 @@
+name: Working Simple Test
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -s ifconfig.me > branch-ip.txt
+      - run: echo "Branch test: $(date)" > branch-result.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: branch-results
+          path: "*.txt"
